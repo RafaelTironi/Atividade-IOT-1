@@ -1,29 +1,32 @@
-# iot-exemplo-repositorio
+// C++ code
+//
+int buttonPin = 7;
+int ledAzul = 10;
+int ledAmarelo = 9;
 
-Discente: Ícaro Caldeira Botelho
+bool estado = false;
 
-Docente: Amanda Paul Dull
+void setup() {
+  pinMode(buttonPin, INPUT);
+  pinMode(ledAzul, OUTPUT);
+  pinMode(ledAmarelo, OUTPUT);
+}
 
-Esse repositório serve de exemplo para a entrega de atividades da matéria de IoT.
+void loop() {
 
-[![Simular no Tinkercad](https://img.shields.io/badge/Simular%20no-Tinkercad-orange?style=for-the-badge&logo=autodesk)](https://www.tinkercad.com/things/gzcCF6GhFek-acendedor-de-led-3000?sharecode=oJlNj4IwWi4yJ-hbwXRkpEibq6Wei9GqDSi0qM2b9bM)
+  if (digitalRead(buttonPin) == HIGH) {
 
-## Enunciado: Vamos ligar o LED!
+    estado = !estado;
 
-O projeto vai utilizar um botão como entrada para controlar um LED como saída. Ao pressionar o botão, o Arduino altera o estado do LED — cada clique liga ou desliga, funcionando como um interruptor eletrônico.
+    if (estado == true) {
+      digitalWrite(ledAzul, HIGH);
+      digitalWrite(ledAmarelo, LOW);
+    } 
+    else {
+      digitalWrite(ledAzul, LOW);
+      digitalWrite(ledAmarelo, HIGH);
+    }
 
-- O Arduino lê o estado do botão pelo **pino 7**
-- Controla o LED pelo **pino 10**
-
-## Materiais necessários
-
-| Qtd | Componente |
-|-----|------------|
-| 1 | Placa Arduino UNO |
-| 1 | Cabo USB |
-| 1 | Protoboard |
-| 1 | Resistor de 200 Ω ou 220 Ω |
-| 1 | Resistor de 10 kΩ |
-| 1 | Botão tipo push button |
-| 1 | LED vermelho difuso de 5 mm |
-| — | Fios de jumper macho-macho |
+    delay(500);
+  }
+}
